@@ -81,6 +81,7 @@ namespace BreweryTests
 
             //Out of stock value should be 1127. This won't be accurate when the database is actually functioning.
             Assert.AreEqual(ingredients.Count, 1127);
+            Assert.AreEqual(ingredients[0].Name, "Acid Malt");
         }
 
         /*
@@ -103,6 +104,7 @@ namespace BreweryTests
             }
 
             Assert.AreEqual(incomingList.Count, 35);
+            Assert.AreEqual("IIA ID: " + incomingList[0].IngredientInventoryAdditionId + " has " + incomingList[0].Quantity + " " + incomingList[0].Name + " (Ingredient ID: " + incomingList[0].IngredientId + ") incoming on " + incomingList[0].EstimatedDeliveryDate, "IIA ID: 1 has 8.164656 Pale Malt (2 Row) Bel (Ingredient ID: 67) incoming on 12/3/2020 10:39:17 AM");
         }
 
         /*
@@ -122,7 +124,14 @@ namespace BreweryTests
         {
             List<Recipe> r;
             r = dbContext.Recipes.ToList();
+            
+            foreach(Recipe recipe in r)
+            {
+                Console.WriteLine(recipe.RecipeId + " " + recipe.Name);
+            }
+
             Assert.AreEqual(r.Count, 4);
+            Assert.AreEqual(r[0].RecipeId + " " + r[0].Name, "1 Fuzzy Tales Juicy IPA");
         }
 
         /*
@@ -176,6 +185,7 @@ namespace BreweryTests
             }
 
             Assert.AreEqual(suppliers.Count, 6);
+            Assert.AreEqual("ID: " + suppliers[0].SupplierId + " is " + suppliers[0].Name + " and can have orders placed at " + suppliers[0].Website, "ID: 1 is BSG Craft Brewing and can have orders placed at https://bsgcraftbrewing.com/");
         }
 
         /*
@@ -193,6 +203,7 @@ namespace BreweryTests
             }
 
             Assert.AreEqual(suppliers.Count, 3);
+            Assert.AreEqual(suppliers[0].ContactFirstName + " " + suppliers[0].ContactLastName + " is with " + suppliers[0].Name + " and can be reached at " + suppliers[0].ContactPhone, "Zach Grossfeld is with Country Malt Group and can be reached at 3606996765");
         }
 
         [Test]
@@ -207,6 +218,7 @@ namespace BreweryTests
             }
 
             Assert.AreEqual(unitTypes.Count, 3);
+            Assert.AreEqual(unitTypes[0].UnitTypeId + " " + unitTypes[0].Name, "1 each");
         }
 
     }
