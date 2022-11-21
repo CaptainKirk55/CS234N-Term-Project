@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brewery_Project", "CS243N Term Project\Brewery_Project.csproj", "{AD835FF4-7108-4D2A-B8BF-7977DDC6A16D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Brewery_Project", "CS243N Term Project\Brewery_Project.csproj", "{AD835FF4-7108-4D2A-B8BF-7977DDC6A16D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BreweryTests", "BreweryTests\BreweryTests.csproj", "{7EF2FF68-F69D-40B3-A61E-7145624F2F69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BreweryTests", "BreweryTests\BreweryTests.csproj", "{7EF2FF68-F69D-40B3-A61E-7145624F2F69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BreweryRESTAPI", "BreweryRESTAPI\BreweryRESTAPI.csproj", "{12F73C46-F3A8-4D2E-B34B-DBB5C14295B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7EF2FF68-F69D-40B3-A61E-7145624F2F69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EF2FF68-F69D-40B3-A61E-7145624F2F69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EF2FF68-F69D-40B3-A61E-7145624F2F69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12F73C46-F3A8-4D2E-B34B-DBB5C14295B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12F73C46-F3A8-4D2E-B34B-DBB5C14295B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12F73C46-F3A8-4D2E-B34B-DBB5C14295B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12F73C46-F3A8-4D2E-B34B-DBB5C14295B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
