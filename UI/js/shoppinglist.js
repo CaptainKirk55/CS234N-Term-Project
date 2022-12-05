@@ -8,6 +8,35 @@ class ShoppingList {
         this.hopButton = document.getElementById("hopButton");
         this.yeastButton = document.getElementById("yeastButton");
 
+        this.genericSupplierCartDiv = document.getElementById("genericSupplierCartDiv");
+        this.genericSupplierCart = document.getElementById("genericSupplierCart");
+
+        //The Brewer wants to be able to sort ingredients for purchase by the supplier, but ingredient-supplier data is not available at this moment.
+        //That's why there's kind of an ability for multiple carts to exist at once.
+        this.carts = {
+            ingredients: [
+
+            ]
+        }
+        
+        /*
+        this.carts = {
+            supplierID: {
+                Ingredients: {
+                    IngredientId:
+                    IngredientName:
+                    QuantityOrdering:
+                    QuantityOnHand:
+
+                    **Weight:
+                    **Cost:
+                    **Not in the database yet.
+                }
+                SupplierName:
+            }
+        }
+        */
+
         this.populateIngredientBank(5); //Show all ingredients   
         this.ActivateSortButtons(); //Activate the sort buttons in the ingredient bank
     }
@@ -23,12 +52,12 @@ class ShoppingList {
                 {
                     if (ingredientData[i].ingredientTypeId == ingredientType)
                     {
-                        ingredientHTML += this.RenderIngredientElement(ingredientData[i], i+1);
+                        ingredientHTML += this.RenderIngredientElement(ingredientData[i]);
                     }
                 }
                 else
                 {
-                    ingredientHTML += this.RenderIngredientElement(ingredientData[i], i+1);
+                    ingredientHTML += this.RenderIngredientElement(ingredientData[i]);
                 }
             }
 
@@ -47,8 +76,51 @@ class ShoppingList {
         fetch(`${this.server}/ingredients/${index}`)
         .then(response => response.json())
         .then(data => {
-            console.log(data.name + " added to cart");
+            var check = this.carts.ingredients.findIndex(i => i.IngredientId == index);
+            if (check > -1) {
+                //List already has that ingredients
+                this.carts.ingredients[check].Ordering += 1;
+                this.RenderOldCartElement(check + 1);
+            }
+            else
+            {
+                if (this.carts.ingredients.length == 0)
+                {
+                    this.genericSupplierCartDiv.classList.remove("d-none");
+                }
+
+                var newIng = {
+                    IngredientId: index,
+                    IngredientName: data.name,
+                    Ordering: 1,
+                    OnHandQuantity: data.onHandQuantity,
+                }
+
+                this.carts.ingredients.push(newIng);
+            
+                //Append to the cart
+                this.genericSupplierCart.innerHTML += this.RenderNewCartElement(newIng);
+            }
+            console.log(this.carts);  
         });
+    }
+
+    //Render a new row on the cart
+    RenderNewCartElement(ingredient) {
+        return `
+            <tr>
+                <th scope="row">${ingredient.IngredientName}</th>
+                <td id="CI${ingredient.IngredientId}">${ingredient.Ordering}</td>
+                <td>n/a</td>
+                <td>n/a</td>
+                <td>${ingredient.OnHandQuantity}</td>
+            </tr>
+        `
+    }
+
+    //Re-render an old row of the cart and update the quantity
+    RenderOldCartElement(index) {
+        document.getElementById("CI" + index).innerHTML = this.carts.ingredients[index - 1].Ordering;
     }
 
     ActivateSortButtons() {
@@ -98,14 +170,12 @@ class ShoppingList {
         }
     }
 
-    RenderIngredientElement(ingredient, index) {
+    //The cost, weight, and supplier are not provided in the database. If they were, I would add them here like the sample UI.
+    RenderIngredientElement(ingredient) {
         return `
             <tr>
                 <th scope="row">${ingredient.name}</th>
-                <td>$30</td>
-                <td>10lbs</td>
-                <td><a>Water Inc.</a></td> <!-- Hover info for supplier contact info -->
-                <td><button type="button" class="btn btn-warning ingredientButton" id="IB${index}">Add</button></td>
+                <td><button type="button" class="btn btn-warning ingredientButton" id="IB${ingredient.ingredientId}">Add</button></td>
             </tr>
         `
     }
@@ -116,9 +186,6 @@ class ShoppingList {
             <thead class="thead">
                 <tr>
                     <th scope="col">Name</th>
-                    <th scope="col">Cost/Unit</th>
-                    <th scope="col">Weight/Unit</th>
-                    <th scope="col">Supplier</th>
                     <th scope="col"></th>
                 </tr>
             </thead>

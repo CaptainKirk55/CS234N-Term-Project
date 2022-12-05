@@ -61,7 +61,7 @@
                     <div class="container vh-75 mt-3">
                         <h3 class="row text-success">Carts</h3>
                         <!-- Default Supplier 1 -->
-                        <div class="row">
+                        <!-- <div class="row">
                             <h4 class="row">Supplies & Son</h4>
                             <table class="table-bordered">
                                 <thead class="thead">
@@ -90,10 +90,10 @@
                                 </div>
                                 <button class="btn btn-warning">Order</button>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- Default Supplier 2 -->
-                        <div class="row">
+                        <!-- <div class="row">
                             <h4 class="row">Water Inc.</h4>
                             <table class="table-bordered">
                                 <thead class="thead">
@@ -130,6 +130,29 @@
                                 </div>
                                 <button class="btn btn-warning">Order</button>
                             </div>
+                        </div> -->
+
+                        <div class="row d-none" id="genericSupplierCartDiv">
+                            <h4 class="row">Supplier Name</h4>
+                            <table class="table-bordered" id="genericSupplierCart">
+                                <thead class="thead">
+                                    <tr>
+                                        <th scope="col">Ingredient Name</th>
+                                        <th scope="col">Ordering</th>
+                                        <th scope="col">Total Weight</th>
+                                        <th scope="col">Total Cost</th>
+                                        <th scope="col">On Hand</th>
+                                    </tr>
+                                </thead>
+                            </table>
+
+                            <div class="text-end">
+                                <div>
+                                    <p id="genericSupplierWeightCost">Total Weight: n/albs <br>
+                                    Total Cost: $n/a</p>
+                                </div>
+                                <button class="btn btn-warning">Order</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -161,9 +184,9 @@
                             <thead class="thead">
                                 <tr>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Cost/Unit</th>
+                                    <!-- <th scope="col">Cost/Unit</th>
                                     <th scope="col">Amount/Unit</th>
-                                    <th scope="col">Supplier</th>
+                                    <th scope="col">Supplier</th> -->
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
