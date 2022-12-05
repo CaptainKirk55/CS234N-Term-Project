@@ -222,6 +222,8 @@ class ShoppingList {
 
     //More ways to sort the ingredient list. By quantity and by name. Also just a way to search directly for the name. 
     //The ingredient list should also probably have a scroll bar of it's own instead of the main page scroll bar.
+
+    //A quantity selector for when adding to cart. That way the user doesn't have to click multiple times.
 }
 
 window.addEventListener("load", () => new ShoppingList);
